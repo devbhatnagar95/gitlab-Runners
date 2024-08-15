@@ -1,0 +1,46 @@
+stages:
+  - build
+  - test
+  - deploy
+
+build-job1:
+  stage: build
+  script:
+    - echo "Starting build job 1"
+    - sleep 60  # Simulating a long-running task
+    - echo "Build job 1 completed"
+
+build-job2:
+  stage: build
+  script:
+    - echo "Starting build job 2"
+    - sleep 60  # Simulating a long-running task
+    - echo "Build job 2 completed"
+
+test-job1:
+  stage: test
+  script:
+    - echo "Starting test job 1"
+    - sleep 60  # Simulating a long-running task
+    - echo "Test job 1 completed"
+
+test-job2:
+  stage: test
+  script:
+    - echo "Starting test job 2"
+    - sleep 60  # Simulating a long-running task
+    - echo "Test job 2 completed"
+
+deploy-job1:
+  stage: deploy
+  script:
+    - echo "Starting deploy job 1"
+    - sleep 60  # Simulating a long-running task
+    - echo "Deploy job 1 completed"
+
+deploy-job2:
+  stage: deploy
+  script:
+    - echo "Starting deploy job 2"
+    - sleep 60  # Simulating a long-running task
+    - echo "Deploy job 2 completed"
