@@ -1,0 +1,41 @@
+[[runners]]
+  name = "autoscaling-runner"
+  url = "https://gitlab.com/"
+  token = "YOUR_REGISTRATION_TOKEN"
+  executor = "docker+machine"
+  limit = 10
+  [runners.custom_build_dir]
+  [runners.docker]
+    tls_verify = false
+    image = "alpine:latest"
+    privileged = true
+    disable_entrypoint_overwrite = false
+    oom_kill_disable = false
+    disable_cache = false
+    volumes = ["/cache"]
+    shm_size = 0
+  [runners.machine]
+    IdleCount = 0
+    IdleTime = 600
+    MaxBuilds = 1
+    MachineDriver = "amazonec2"
+    MachineName = "gitlab-runner-%s"
+    MachineOptions = [
+      "amazonec2-access-key=YOUR_AWS_ACCESS_KEY",
+      "amazonec2-secret-key=YOUR_AWS_SECRET_KEY",
+      "amazonec2-region=YOUR_AWS_REGION",
+      "amazonec2-vpc-id=YOUR_VPC_ID",
+      "amazonec2-subnet-id=YOUR_SUBNET_ID",
+      "amazonec2-zone=a",
+      "amazonec2-instance-type=t2.micro",
+      "amazonec2-ami=ami-0c55b159cbfafe1f0"  # Adjust AMI ID as needed
+    ]
+  [runners.cache]
+    Type = "s3"
+    Shared = true
+    [runners.cache.s3]
+      ServerAddress = "s3.amazonaws.com"
+      AccessKey = "YOUR_AWS_ACCESS_KEY"
+      SecretKey = "YOUR_AWS_SECRET_KEY"
+      BucketName = "gitlab-runner-cache"
+      Insecure = false
